@@ -56,3 +56,14 @@ def test_trip_duration_calculation():
     )
 
     assert df.loc[0, "trip_duration_minutes"] == 30.0
+
+def test_trip_duration_is_positive():
+
+    rows = [sample_trip()]
+
+    df = transform_trips(
+        rows,
+        "2026-11-25T00:00:00Z"
+    )
+
+    assert df.loc[0, "trip_duration_minutes"] > 0
